@@ -26,21 +26,17 @@ namespace Kutuphanem
             InitializeComponent();
         }
         List<Category> categories = new List<Category>();
+        List<Author> authors = new List<Author>();
+        List<Book> books = new List<Book>();
+
         private void BtnAddCategory_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Category category = new Category();
-                category.Id = Convert.ToInt32(tbCategoryId.Text);
-                category.Name = (tbCategoryName.Text);
-                categories.Add(category);
-                DgCategoryDoldur();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            
+            Category category = new Category();
+            category.Id = Convert.ToInt32(tbCategoryId.Text);
+            category.Name = (tbCategoryName.Text);
+            categories.Add(category);
+            DgCategoryDoldur();
+
         }
         private void DgCategoryDoldur()
         {
@@ -51,11 +47,38 @@ namespace Kutuphanem
 
         private void BtnAddAuthor_Click(object sender, RoutedEventArgs e)
         {
+            Author author = new Author();
+            author.Id= Convert.ToInt32(tbAuthorId.Text);
+            author.FirstName = tbAuthorFirstName.Text;
+            author.LastName = tbAuthorLastName.Text;
+            author.Country = tbAuthorCountry.Text;
+            authors.Add(author);
+            DgAuthorDoldur();
+
+        }
+        private void DgAuthorDoldur()
+        {
+            dgAuthor.ItemsSource = null;
+            dgAuthor.ItemsSource = authors;
 
         }
 
         private void BtnAddBook_Click(object sender, RoutedEventArgs e)
         {
+            Book book = new Book();
+            book.Id = Convert.ToInt32(tbBookId.Text);
+            book.CategoryId = Convert.ToInt32(tbBookCategoryId.Text);
+            book.AuthorId = Convert.ToInt32(tbBookAuthorId.Text);
+            book.Name = tbBookName.Text;
+            book.Isbn = Convert.ToInt32(tbBookIsbn.Text);
+            books.Add(book);
+            DgBookDoldur();
+
+        }
+        private void DgBookDoldur()
+        {
+            dgBook.ItemsSource = null;
+            dgBook.ItemsSource = books;
 
         }
     }
