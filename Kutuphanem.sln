@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kutuphanem(list)", "Kutuphanem\Kutuphanem(list).csproj", "{DE063B50-C689-4EDB-AF85-555CA3A7B481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kutuphanem_List", "Kutuphanem\Kutuphanem_List.csproj", "{DE063B50-C689-4EDB-AF85-555CA3A7B481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutuphanemLib", "KutuphanemLib\KutuphanemLib.csproj", "{4B02A698-AEBF-4E3C-A023-0E80446E76EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kutuphanem_Database", "Kutuphanem(Database)\Kutuphanem_Database.csproj", "{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4B02A698-AEBF-4E3C-A023-0E80446E76EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B02A698-AEBF-4E3C-A023-0E80446E76EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B02A698-AEBF-4E3C-A023-0E80446E76EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

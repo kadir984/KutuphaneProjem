@@ -13,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Kutuphanem_Database;
 using KutuphanemLib;
+
 
 namespace Kutuphanem
 {
@@ -38,8 +40,8 @@ namespace Kutuphanem
             categories.Add(category);
             //DgCategoryDoldur();
             //cbOtoDoldur(cbBookCategoryId,categories);
-            DgOtoDoldur(dgCategory, categories);
-            cbOtoDoldur(cbBookCategoryId, categories);
+            OtoDoldur.DgOtoDoldur(dgCategory, categories);
+            OtoDoldur.cbOtoDoldur(cbBookCategoryId, categories);
 
         }
         private void BtnAddAuthor_Click(object sender, RoutedEventArgs e)
@@ -52,8 +54,8 @@ namespace Kutuphanem
             authors.Add(author);
             //DgAuthorDoldur();
             //cbAuthorDoldur();
-            DgOtoDoldur(dgAuthor, authors);
-            cbOtoDoldur(cbBookAuthorId, authors);
+            OtoDoldur.DgOtoDoldur(dgAuthor, authors);
+            OtoDoldur.cbOtoDoldur(cbBookAuthorId, authors);
         }
         private void BtnAddBook_Click(object sender, RoutedEventArgs e)
         {
@@ -65,54 +67,8 @@ namespace Kutuphanem
             book.Isbn = Convert.ToInt32(tbBookIsbn.Text);
             books.Add(book);
             //DgBookDoldur();
-            DgOtoDoldur(dgBook, books);
+            OtoDoldur.DgOtoDoldur(dgBook, books);
         }
-        //#region DgDoldur eski yöntem
-        //private void DgCategoryDoldur()
-        //{
-        //    dgCategory.ItemsSource = null;
-        //    dgCategory.ItemsSource = categories;
-
-        //}
-        //private void DgAuthorDoldur()
-        //{
-        //    dgAuthor.ItemsSource = null;
-        //    dgAuthor.ItemsSource = authors;
-
-        //}
-        //private void DgBookDoldur()
-        //{
-        //    dgBook.ItemsSource = null;
-        //    dgBook.ItemsSource = books;
-
-        //}
-        //#endregion
-        private void DgOtoDoldur(DataGrid dataGridDoldur ,IEnumerable list)
-        {
-            dataGridDoldur.ItemsSource = null;
-            dataGridDoldur.ItemsSource = list;
-
-        }
-        //#region CbDoldur eski yöntem
-        //private void cbCategorydoldur()
-        //{
-        //    cbBookCategoryId.ItemsSource = categories;
-        //    cbBookCategoryId.DisplayMemberPath = "Name";
-        //    cbBookCategoryId.SelectedIndex = 0;
-        //}
-
-        //private void cbAuthorDoldur()
-        //{
-        //    cbBookAuthorId.ItemsSource = authors;
-        //    cbBookAuthorId.DisplayMemberPath = "Name";
-        //    cbBookAuthorId.SelectedIndex = 0;
-        //}
-        //#endregion
-        private void cbOtoDoldur(ComboBox comboBoxDoldur,IEnumerable list)
-        {
-            comboBoxDoldur.ItemsSource = list;
-            comboBoxDoldur.DisplayMemberPath = "Name";
-            comboBoxDoldur.SelectedIndex = 0;
-        }//düzenlenecek
+        
     }
 }
