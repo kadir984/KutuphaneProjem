@@ -37,6 +37,8 @@ namespace Kutuphanem
             categories.Add(category);
             DgCategoryDoldur();
 
+            cbCategorydoldur();
+
         }
         private void DgCategoryDoldur()
         {
@@ -54,7 +56,7 @@ namespace Kutuphanem
             author.Country = tbAuthorCountry.Text;
             authors.Add(author);
             DgAuthorDoldur();
-
+            cbAuthorDoldur();
         }
         private void DgAuthorDoldur()
         {
@@ -67,8 +69,8 @@ namespace Kutuphanem
         {
             Book book = new Book();
             book.Id = Convert.ToInt32(tbBookId.Text);
-            book.CategoryId = Convert.ToInt32(tbBookCategoryId.Text);
-            book.AuthorId = Convert.ToInt32(tbBookAuthorId.Text);
+            book.CategoryId = ((Category)cbBookCategoryId.SelectedItem).Id;
+            book.AuthorId = ((Author)cbBookAuthorId.SelectedItem).Id;
             book.Name = tbBookName.Text;
             book.Isbn = Convert.ToInt32(tbBookIsbn.Text);
             books.Add(book);
@@ -80,6 +82,19 @@ namespace Kutuphanem
             dgBook.ItemsSource = null;
             dgBook.ItemsSource = books;
 
+        }
+
+       private void cbCategorydoldur()
+        {
+            cbBookCategoryId.ItemsSource = categories;
+            cbBookCategoryId.DisplayMemberPath = "Name";
+            cbBookCategoryId.SelectedIndex = 0;
+        }
+        private void cbAuthorDoldur()
+        {
+            cbBookAuthorId.ItemsSource = authors;
+            cbBookAuthorId.DisplayMemberPath = "FirstName";
+            cbBookAuthorId.SelectedIndex = 0;
         }
     }
 }
