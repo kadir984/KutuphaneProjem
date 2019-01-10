@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Kutuphanem_Database;
 using KutuphanemLib;
+using System.Data.SqlClient;
+using System.Data;
 
 
 namespace Kutuphanem
@@ -31,6 +33,35 @@ namespace Kutuphanem
         List<Category> categories = new List<Category>();
         List<Author> authors = new List<Author>();
         List<Book> books = new List<Book>();
+
+        public void dbBaglan ()
+        {
+            string baglantistring = @"Server=.\MANAS_SQLSERVER;Database=Kutuphanem;User ID=sa;Password=123456Aa;";
+            SqlConnection baglanti = new SqlConnection(baglantistring);
+
+            if (baglanti.State == ConnectionState.Closed)
+            {
+                baglanti.Open();
+            }
+            else
+            {
+                MessageBox.Show("Veritabanı bağlantısı zaten açık.");
+            }
+
+        }
+
+        public void dbEkle()
+        {
+
+            try
+            {
+                string ekleString = "INSERT INTO [Kutuphanem].[dbo].[Category]([name])VALUES('" + tbCategoryName + "')";// devam et
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata"+ex);
+            }
+        }
 
         private void BtnAddCategory_Click(object sender, RoutedEventArgs e)
         {
@@ -70,5 +101,19 @@ namespace Kutuphanem
             OtoDoldur.DgOtoDoldur(dgBook, books);
         }
         
+        private void btnAddCategoryDb_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdateCategoryDb_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteCategoryDb_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
