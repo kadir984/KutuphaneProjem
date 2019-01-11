@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kutuphanem_List", "Kutuphan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KutuphanemLib", "KutuphanemLib\KutuphanemLib.csproj", "{4B02A698-AEBF-4E3C-A023-0E80446E76EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kutuphanem_Database", "Kutuphanem(Database)\Kutuphanem_Database.csproj", "{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kutuphanem_Database_", "Kutuphanem(Database)\Kutuphanem_Database_.csproj", "{4BBA1841-9C6B-431C-B5C2-94BD23EFAA87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

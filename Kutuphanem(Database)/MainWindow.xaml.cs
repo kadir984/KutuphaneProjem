@@ -17,7 +17,7 @@ using Kutuphanem_Database;
 using KutuphanemLib;
 using System.Data.SqlClient;
 using System.Data;
-
+using Kutuphanem_Database_;
 
 namespace Kutuphanem
 {
@@ -33,36 +33,7 @@ namespace Kutuphanem
         List<Category> categories = new List<Category>();
         List<Author> authors = new List<Author>();
         List<Book> books = new List<Book>();
-
-        public void dbBaglan ()
-        {
-            string baglantistring = @"Server=.\MANAS_SQLSERVER;Database=Kutuphanem;User ID=sa;Password=123456Aa;";
-            SqlConnection baglanti = new SqlConnection(baglantistring);
-
-            if (baglanti.State == ConnectionState.Closed)
-            {
-                baglanti.Open();
-            }
-            else
-            {
-                MessageBox.Show("Veritabanı bağlantısı zaten açık.");
-            }
-
-        }
-
-        public void dbEkle()
-        {
-
-            try
-            {
-                string ekleString = "INSERT INTO [Kutuphanem].[dbo].[Category]([name])VALUES('" + tbCategoryName + "')";// devam et
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hata"+ex);
-            }
-        }
-
+        
         private void BtnAddCategory_Click(object sender, RoutedEventArgs e)
         {
             Category category = new Category();
@@ -100,20 +71,30 @@ namespace Kutuphanem
             //DgBookDoldur();
             OtoDoldur.DgOtoDoldur(dgBook, books);
         }
-        
+
+        Dbislem dbislem = new Dbislem();
+
         private void btnAddCategoryDb_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            dbislem.Ekle("Category",tbCategoryName.Text);
         }
 
         private void btnUpdateCategoryDb_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            dbislem.Duzelt(tbCategoryName.Text,tbCategoryId.Text);
         }
 
         private void btnDeleteCategoryDb_Click(object sender, RoutedEventArgs e)
         {
+            
+            dbislem.Sil(tbCategoryId.Text);
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+          
         }
     }
 }
