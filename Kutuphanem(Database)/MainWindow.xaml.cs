@@ -14,10 +14,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Kutuphanem_Database;
+using Kutuphanem_Database_;
 using KutuphanemLib;
 using System.Data.SqlClient;
 using System.Data;
-using Kutuphanem_Database_;
 
 namespace Kutuphanem
 {
@@ -33,7 +33,7 @@ namespace Kutuphanem
         List<Category> categories = new List<Category>();
         List<Author> authors = new List<Author>();
         List<Book> books = new List<Book>();
-        
+
         private void BtnAddCategory_Click(object sender, RoutedEventArgs e)
         {
             Category category = new Category();
@@ -49,7 +49,7 @@ namespace Kutuphanem
         private void BtnAddAuthor_Click(object sender, RoutedEventArgs e)
         {
             Author author = new Author();
-            author.Id= Convert.ToInt32(tbAuthorId.Text);
+            author.Id = Convert.ToInt32(tbAuthorId.Text);
             author.Name = tbAuthorFirstName.Text;
             author.LastName = tbAuthorLastName.Text;
             author.Country = tbAuthorCountry.Text;
@@ -71,30 +71,36 @@ namespace Kutuphanem
             //DgBookDoldur();
             OtoDoldur.DgOtoDoldur(dgBook, books);
         }
-
+        
         Dbislem dbislem = new Dbislem();
 
         private void btnAddCategoryDb_Click(object sender, RoutedEventArgs e)
         {
-            
-            dbislem.Ekle("Category",tbCategoryName.Text);
+            dbislem.Ekle("Category", "Name", tbCategoryName.Text);
+
+            SqlConnection baglanti = new SqlConnection(@"Server=X870\SQLEXPRESS;Database=Kutuphanem;Integrated Security=True;");
+            baglanti.Open();
+            string kayit = "SELECT * from Category ";
+            //musteriler tablosundaki tüm alanları isim parametresi
+            SqlCommand komut = new SqlCommand(kayit, baglanti);
+            komut.Parameters.AddWithValue("@isim", tbCategoryName.Text);
+            //isim parametremize textbox'dan girilen değeri aktarıyoruz.
+            SqlDataAdapter da = new SqlDataAdapter(komut);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dgCategory.ItemsSource = (IEnumerable) dt;
+            baglanti.Close();
         }
 
         private void btnUpdateCategoryDb_Click(object sender, RoutedEventArgs e)
         {
-            
-            dbislem.Duzelt(tbCategoryName.Text,tbCategoryId.Text);
+            dbislem.Duzelt("Category", "Name", tbCategoryName.Text, tbCategoryId.Text);
         }
 
         private void btnDeleteCategoryDb_Click(object sender, RoutedEventArgs e)
         {
-            
-            dbislem.Sil(tbCategoryId.Text);
+            dbislem.Sil("Category", tbCategoryId.Text);
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-          
-        }
     }
 }

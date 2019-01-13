@@ -9,9 +9,10 @@ using System.Windows;
 
 namespace Kutuphanem_Database_
 {
-    class Dbislem
+    public class Dbislem
     {
-        SqlConnection baglanti = new SqlConnection(@"Server=.\MANAS_SQLSERVER;Database=Kutuphanem;User ID=sa;Password=123456Aa;");
+
+        SqlConnection baglanti = new SqlConnection(@"Server=X870\SQLEXPRESS;Database=Kutuphanem;Integrated Security=True;");
 
         public void Baglan()
         {
@@ -25,31 +26,53 @@ namespace Kutuphanem_Database_
             }
         }
 
-        public void Ekle(string tablo,string dbdeger)
+        public void Ekle(string dbtabloadi,string dbkolon,string dbdeger)
         {
-            baglanti.Open();
-            string ekleString = "INSERT INTO "+tablo+"(name) VALUES('" + dbdeger + "')";
+            Baglan();
+            string ekleString = "INSERT INTO "+dbtabloadi+"("+dbkolon+") VALUES('"+dbdeger+"')";
             SqlCommand eklesql = new SqlCommand(ekleString, baglanti);
-            eklesql.ExecuteNonQuery();
+            int etkilenensatirsayisi = eklesql.ExecuteNonQuery();
             baglanti.Close();
+
+            if (etkilenensatirsayisi!=0)
+            {
+                MessageBox.Show("Etkilenen satır sayısı =" + etkilenensatirsayisi );
+            }
+            else
+            {
+                MessageBox.Show("Veritabanını kontrol et.");
+            };
         }
 
-        public void Duzelt(string dbdeger, string id)
+        public void Duzelt(string dbtabloadi, string dbkolonadi,string dbkolondeger, string id)
         {
-            baglanti.Open();
-            string duzeltString = "UPDATE Category SET name=('" + dbdeger + "') WHERE id =('" + id + "')";
+            Baglan();
+            string duzeltString = "UPDATE "+dbtabloadi+" SET "+dbkolonadi+"=('"+dbkolondeger+"') WHERE id =('"+id+"')";
             SqlCommand duzeltsql = new SqlCommand(duzeltString, baglanti);
             duzeltsql.ExecuteNonQuery();
             baglanti.Close();
         }
 
-        public void Sil(string id)
+        public void Sil(string dbtabloadi,string id)
         {
-            baglanti.Open();
-            string silString = "DELETE FROM Category WHERE id =('" + id + "')";
+            Baglan();
+            string silString = "DELETE FROM "+dbtabloadi+" WHERE id =('" + id + "')";
             SqlCommand silsql = new SqlCommand(silString, baglanti);
             silsql.ExecuteNonQuery();
             baglanti.Close();
         }
+
+        public void ara(string dbtabloadi, string id)// Datagrid eklenmeli 
+        {
+            Baglan();
+            string araString = "SELECT  FROM " + dbtabloadi + " WHERE id =('" + id + "')";
+            SqlCommand arasql = new SqlCommand(araString, baglanti);
+            SqlDataAdapter sqlData = new SqlDataAdapter(arasql);
+            DataTable dt = new DataTable();
+            sqlData.Fill(dt);
+            //DataGrid.datasource = dt;
+            baglanti.Close();
+        }
+
     }
 }
